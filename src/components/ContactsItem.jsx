@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from './redux/contacts/operations';
+import * as React from 'react';
+import Button from '@mui/material/Button';
+
 
 export const ContactsItem = ({ contact }) => {
   const dispatch = useDispatch();
@@ -10,7 +13,7 @@ export const ContactsItem = ({ contact }) => {
       <span>
         {contact.name} : {contact.phone}
       </span>
-      <button onClick={handleDelete}>Delete</button>
+      <Button onClick={handleDelete}>Delete</Button>
     </>
   );
 };

@@ -1,18 +1,15 @@
-// import { Form } from './Form';
-// import { ContactsList } from './ContactsList';
-// import Filter from './Filter';
 import { useDispatch } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from './redux/auth/operation';
 import { useAuth } from '../hooks';
-// !!!!!
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
+import axios from 'axios';
 
-// import { fetchContacts } from './redux/contacts/operations';
-// import { getError, getIsLoading } from './redux/contacts/selectors';
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -21,13 +18,13 @@ const СontactsPage = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(getIsLoading);
-  // const error = useSelector(getError);
   const { isRefreshing } = useAuth();
   console.log('isRefreshing', isRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
+    // const token = localStorage.getItem('token');
+    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }, [dispatch]);
 
   return isRefreshing ? (
@@ -60,13 +57,4 @@ export const App = () => {
       </Route>
     </Routes>
   );
-
-  // return (
-  //   <>
-  //     <Form />
-  //     <Filter />
-  //     {isLoading && !error && <b>Request in progress...</b>}
-  //     <ContactsList />
-  //   </>
-  // );
 };

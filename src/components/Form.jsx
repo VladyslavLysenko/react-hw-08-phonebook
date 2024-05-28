@@ -47,7 +47,7 @@ export const Form = () => {
       window.alert(`This contact ${contactName} already excist `);
       return false;
     } else {
-      dispatch(addContact({ name: contactName, phone: number }));
+      dispatch(addContact({ name: contactName, number: number }));
       return true;
     }
   };
