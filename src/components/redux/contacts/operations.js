@@ -41,6 +41,3 @@ export const deleteContact = createAsyncThunk(
 );
 
 
-// test
-// test12421@gmail.com
-// test12421

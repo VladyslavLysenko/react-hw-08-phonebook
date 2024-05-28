@@ -1,5 +1,5 @@
 import { Navigation } from './Navigation';
-import { UserMenu } from '../components/UserMenu';
+import { UserMenu } from './UserMenu';
 import { useAuth } from 'hooks';
 import { AuthNav } from './AuthNav';
 

@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
-  localStorage.setItem('token', token);
+  // localStorage.setItem('token', token);
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -83,7 +83,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/me');
+      const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

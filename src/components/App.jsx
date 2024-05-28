@@ -1,15 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { refreshUser } from './redux/auth/operation';
+import { refreshUser } from './redux/auth/auth-operation';
 import { useAuth } from '../hooks';
 import { Layout } from './Layout';
 import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
-import axios from 'axios';
-
-
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+import * as React from 'react';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -19,12 +16,9 @@ const СontactsPage = lazy(() => import('../pages/Contacts'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-  console.log('isRefreshing', isRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
-    // const token = localStorage.getItem('token');
-    // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }, [dispatch]);
 
   return isRefreshing ? (
